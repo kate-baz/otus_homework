@@ -7,6 +7,7 @@ public class QuizVersion1 {
     static String[] questions;
     static String[][] answers;
     static int countOfCorrectAnswers = 0;
+    static int[] responses;
 
     public static void main(String[] args) {
         questions = new String[3];
@@ -18,6 +19,7 @@ public class QuizVersion1 {
                 {"1. 1939", "2. 1945", "3. 1941"},
                 {"1. Париж", "2. Рим", "3. Лондон"}
         };
+        responses = new int[3];
 
         System.out.println("Выберите правильный вариант ответа. Введите цифру от 1 до 3");
 
@@ -32,8 +34,20 @@ public class QuizVersion1 {
             if ((i == 0 && currentAnswer == 1) || (i == 1 && currentAnswer == 3) || (i == 2 && currentAnswer == 1)) {
                 countOfCorrectAnswers++;
             }
+            responses[i] = currentAnswer;
         }
         System.out.println("Вы ответили правильно на " + countOfCorrectAnswers + " вопросов из 3-х");
+
+        if (responses[0] != 1) {
+            System.out.println("Ответ на вопрос 1 неверный. Правильный ответ - 1.");
+        }
+        if (responses[1] != 3) {
+            System.out.println("Ответ на вопрос 2 неверный. Правильный ответ - 3.");
+        }
+        if (responses[1] != 1) {
+            System.out.println("Ответ на вопрос 3 неверный. Правильный ответ - 1.");
+        }
+
         switch (countOfCorrectAnswers) {
             case (0):
                 System.out.println("Очень плохо!");
@@ -50,6 +64,5 @@ public class QuizVersion1 {
             default:
                 System.out.println("Странный результат.");
         }
-
     }
 }
