@@ -30,11 +30,17 @@ public class QuizVersion1 {
                 System.out.println(answer);
             }
             Scanner sc = new Scanner(System.in);
-            int currentAnswer = sc.nextInt();
-            if ((i == 0 && currentAnswer == 1) || (i == 1 && currentAnswer == 3) || (i == 2 && currentAnswer == 1)) {
-                countOfCorrectAnswers++;
+            //int currentAnswer = sc.nextInt();
+            String buffer = sc.nextLine();
+            if (buffer.length() == 1 && Character.isDigit(buffer.charAt(0))) {
+                int currentAnswer = Character.getNumericValue(buffer.charAt(0));
+                if ((i == 0 && currentAnswer == 1) || (i == 1 && currentAnswer == 3) || (i == 2 && currentAnswer == 1)) {
+                    countOfCorrectAnswers++;
+                }
+                responses[i] = currentAnswer;
             }
-            responses[i] = currentAnswer;
+
+
         }
         System.out.println("Вы ответили правильно на " + countOfCorrectAnswers + " вопросов из 3-х");
 
@@ -44,7 +50,7 @@ public class QuizVersion1 {
         if (responses[1] != 3) {
             System.out.println("Ответ на вопрос 2 неверный. Правильный ответ - 3.");
         }
-        if (responses[1] != 1) {
+        if (responses[2] != 1) {
             System.out.println("Ответ на вопрос 3 неверный. Правильный ответ - 1.");
         }
 
