@@ -1,17 +1,21 @@
 package testingSystem;
 
-import java.util.Scanner;
 
 public class TestingSystem {
     public static void main(String[] args) {
-        Question question = new Question();
+        Question q = new Question();
         Answer answer = new Answer();
-        UserResponse userResponse = new UserResponse();
+        UserResponse ur = new UserResponse();
 
-        question.getQuestion1();
-        userResponse.readUserResponse();
+        q.getQuestion1();
+        int response1 = ur.readUserResponse();
 
-        question.getQuestion2();
-        question.getQuestion3();
+        q.getQuestion2();
+        int response2 = ur.readUserResponse();
+
+        q.getQuestion3();
+        int response3 = ur.readUserResponse();
+
+        ur.showResults(response1, response2, response3);
     }
 }

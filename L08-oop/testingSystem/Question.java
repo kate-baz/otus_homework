@@ -15,12 +15,14 @@ public class Question {
     public void getQuestion2() {
         question = "Вопрос 2. В каком году началась Великая Отечественная война?";
         System.out.println(question);
+        Answer answer = new Answer();
         answer.getAnswersToQuestion2();
     }
 
     public void getQuestion3() {
         question = "Вопрос 3. Назовите столицу Франции";
         System.out.println(question);
+        Answer answer = new Answer();
         answer.getAnswersToQuestion3();
     }
 }
