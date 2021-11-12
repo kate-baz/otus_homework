@@ -7,18 +7,23 @@ public class UserResponse {
 
     private int correctResponsesCount;
     private int responseCount;
+    private static final int CORRECT_ANSWER_TO_QUESTION1 = 1;
+    private static final int CORRECT_ANSWER_TO_QUESTION2 = 3;
+    private static final int CORRECT_ANSWER_TO_QUESTION3 = 1;
 
     public int readUserResponse() {
         int userResponse = 0;
+        if (responseCount > 2) {
+            return userResponse;
+        }
         Scanner scanner = new Scanner(System.in);
         String buffer = scanner.nextLine();
         if (buffer.length() == 1 && Character.isDigit(buffer.charAt(0))) {
             userResponse = Character.getNumericValue(buffer.charAt(0));
             responseCount++;
         } else {
-            responseCount++;
             System.out.println("Необходимо ввести чило от 1 до 3. Пожалуйста, попробуйте снова.");
-            responseCount--;
+
             switch (responseCount) {
                 case (0): {
                     new Question().getQuestion1();
@@ -33,31 +38,12 @@ public class UserResponse {
                     userResponse = readUserResponse();
                 }
             }
-
         }
         return userResponse;
     }
 
-    public boolean validateResponse1(int response) {
-         if (response == 1) {
-            correctResponsesCount++;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean validateResponse2(int response) {
-         if (response == 3) {
-            correctResponsesCount++;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean validateResponse3(int response) {
-        if (response == 1) {
+    public boolean validateResponse(int correctResponse, int  response) {
+         if (response == correctResponse) {
             correctResponsesCount++;
             return true;
         } else {
@@ -66,9 +52,9 @@ public class UserResponse {
     }
 
     public void showResults(int a1, int a2, int a3) {
-        boolean isResponseCorrect1 = validateResponse1(a1);
-        boolean isResponseCorrect2 = validateResponse2(a2);
-        boolean isResponseCorrect3 = validateResponse3(a3);
+        boolean isResponseCorrect1 = validateResponse(CORRECT_ANSWER_TO_QUESTION1, a1);
+        boolean isResponseCorrect2 = validateResponse(CORRECT_ANSWER_TO_QUESTION2, a2);
+        boolean isResponseCorrect3 = validateResponse(CORRECT_ANSWER_TO_QUESTION3, a3);
         switch (correctResponsesCount) {
             case (0) -> System.out.println("Вы не ответили верно ни на один вопрос.");
             case (1) -> System.out.println("Вы ответили верно на один вопрос из трех.");

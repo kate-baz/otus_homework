@@ -2,7 +2,6 @@ package testingSystem;
 
 public class Question {
 
-    private Answer answer;
     private String question;
 
     public void getQuestion1() {

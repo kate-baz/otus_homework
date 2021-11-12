@@ -4,7 +4,6 @@ package testingSystem;
 public class TestingSystem {
     public static void main(String[] args) {
         Question q = new Question();
-        Answer answer = new Answer();
         UserResponse ur = new UserResponse();
 
         q.getQuestion1();
