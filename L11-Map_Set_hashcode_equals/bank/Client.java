@@ -3,9 +3,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Client {
+
     private String name;
     private int age;
-    private Set <Account> activeAccounts = new HashSet<>();
+    private Set <Account> activeAccounts;
 
     Client (String name, int age) {
         if (age < 18) {
@@ -14,6 +15,10 @@ public class Client {
         this.name = name;
         this.age = age;
         this.activeAccounts = new HashSet();
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void addAccount (Account account) {
@@ -29,6 +34,7 @@ public class Client {
         return this.name.hashCode();
     }
 
+    @Override
     public boolean equals(Object object) {
         if (this == object) return true;
         if (object == null) return false;
@@ -36,5 +42,10 @@ public class Client {
 
         Client otherClient = (Client) object;
         return name.equals(otherClient.name);
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

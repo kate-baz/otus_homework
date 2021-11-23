@@ -1,10 +1,15 @@
 public class Account {
+
     private String accountNumber;
     private Client client;
 
     Account (Client client, String number) {
         this.accountNumber = number;
         this.client = client;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
     @Override
