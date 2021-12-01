@@ -19,11 +19,10 @@ public class Bank {
         return uuid.toString();
     }
 
-    public static Account createAccount(String accountID, Client client) {
+    public static Account createAccount(String accountID, Client client) throws DuplicateAccountException {
         Account newAccount = new Account(client, accountID);
         if (accounts.containsKey(newAccount)) {
-            System.out.println("Duplicate Account ID number.");
-            return null;
+            throw new DuplicateAccountException("Account already exists");
         }
         accounts.put(newAccount, client);
         client.addAccount(newAccount);
@@ -39,15 +38,22 @@ public class Bank {
 
         String accountNumber = getUniqueID();
         Bank bank = new Bank();
+        Account account1 = null;
 
-        Account account1 = createAccount(accountNumber, ivanov);
-        createAccount(accountNumber, petrov);
-        createAccount(getUniqueID(), sidorov);
-        createAccount(getUniqueID(), petrov);
-        createAccount(getUniqueID(), sidorov);
-
-        System.out.println(bank.findAccount(ivanov));
-        System.out.println(bank.findAccount(petrov));
-        System.out.println(bank.findClient(account1));
+        try{
+            account1 = createAccount(accountNumber, ivanov);
+            createAccount(accountNumber, petrov);
+            createAccount(getUniqueID(), sidorov);
+            createAccount(getUniqueID(), petrov);
+            createAccount(getUniqueID(), sidorov);
+        }
+        catch (DuplicateAccountException ex) {
+            System.out.println(ex.message);
+        }
+        finally {
+            System.out.println(bank.findAccount(ivanov));
+            System.out.println(bank.findAccount(petrov));
+            System.out.println(bank.findClient(account1));
+        }
     }
 }
