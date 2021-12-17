@@ -12,11 +12,4 @@ public class Parent {
             throw new WrongKidException("This is not my kid");
         }
     }
-
-    public void bringKidToKindergarden (KinderGarden kg, Kid kid) throws FullKindergardenException {
-        if (kg.isFull()) {
-            throw new FullKindergardenException();
-        }
-        kg.addKid(kid);
-    }
 }

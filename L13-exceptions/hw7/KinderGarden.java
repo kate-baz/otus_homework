@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class KinderGarden {
     private final int capacity = 3;
-    private boolean isFull;
+    private static boolean isFull = false;
     private boolean isEmpty;
-    private ArrayList<Kid> kindergarden;
+    private static ArrayList<Kid> kindergarden = new ArrayList<>();
 
     public void addKid (Kid kid) throws FullKindergardenException {
         if (isFull) {
-            throw new FullKindergardenException();
+            throw new FullKindergardenException("Kindergarden is full");
         }
         kindergarden.add(kid);
     }
@@ -26,7 +26,7 @@ public class KinderGarden {
         return isFull;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws WrongKidException {
         KinderGarden kg = new KinderGarden();
         Kid kid1 = new Kid("Ilya");
         Kid kid2 = new Kid("Masha");
@@ -36,25 +36,29 @@ public class KinderGarden {
         try {
             kg.addKid(kid1);
             kg.addKid(kid2);
+            isFull = true;
+            kg.addKid(new Kid("Ivan"));
         }
         catch (FullKindergardenException ex) {
             System.out.println(ex.getMessage());
         }
 
-        try (Kid.Book book = new Kid.Book()) {
+        try (Book book = new Book()) {
             kid1.read(book);
             kid2.read(book);
         }
-        catch (Exception ex) {
-            System.out.println("The book is closed.");
-        }
+//        catch (Exception ex) {
+//            System.out.println("The book is closed.");
+//        }
 
 
         try {
-            parent1.takeKidHome(kid1);
+            parent1.takeKidHome(kid2);
         }
         catch (WrongKidException ex) {
             ex.printStackTrace();
+//            throw new IllegalArgumentException(ex.getMessage());
+            throw ex;
         }
     }
 }
