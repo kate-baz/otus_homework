@@ -1,6 +1,6 @@
 package ru.otus;
 
-import game.*;
+import application.*;
 
 public class Demo {
 

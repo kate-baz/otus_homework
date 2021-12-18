@@ -1,7 +1,7 @@
-package test1.fakes;
+package gameTest1.fakes;
 
-import game.GameWinnerPrinter;
-import game.Player;
+import application.GameWinnerPrinter;
+import application.Player;
 
 import java.util.List;
 

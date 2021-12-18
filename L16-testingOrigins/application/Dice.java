@@ -1,4 +1,4 @@
-package game;
+package application;
 
 public interface Dice {
     int roll();

@@ -1,14 +1,14 @@
-package test1;
+package gameTest1;
 
 import assertions.Assertions;
-import game.*;
-import test1.fakes.DiceSpy;
-import test1.fakes.GameWinnerPrinterSpy;
+import application.*;
+import gameTest1.fakes.DiceSpy;
+import gameTest1.fakes.GameWinnerPrinterSpy;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameTest {
+public class GameTestSpy {
 
     public void testGameFlow() {
         String scenario = "Тест работы приложения";
@@ -39,7 +39,7 @@ public class GameTest {
     }
 
     public static void main(String[] args) {
-        GameTest gameTest = new GameTest();
+        GameTestSpy gameTest = new GameTestSpy();
         gameTest.testGameFlow();
     }
 }

@@ -1,6 +1,6 @@
-package test1.fakes;
+package gameTest1.fakes;
 
-import game.Dice;
+import application.Dice;
 
 import java.util.List;
 
