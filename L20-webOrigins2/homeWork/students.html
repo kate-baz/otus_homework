@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Студенты</title>
+    <script>
+        function addStudent() {
+            const studentTab = document.getElementById("studentTab");
+            let newStudentName = document.getElementById("studentFio").value;
+            let newStudentDateOfBirth = document.getElementById("dateOfBirth").value;
+            let newStudentGender = document.getElementById("gender").value;
+            const newStudentAge = Math.floor((new Date() - new Date(newStudentDateOfBirth))/ 1000 / 60 / 60 / 24 / 365);
+
+            let tBodyRef = studentTab.getElementsByTagName("tbody")[0];
+            const newRow = tBodyRef.insertRow(-1);
+            const newCellWithName = newRow.insertCell(-1);
+            newCellWithName.appendChild(document.createTextNode(newStudentName));
+            const newCellWithDoB = newRow.insertCell(-1);
+            newCellWithDoB.appendChild(document.createTextNode(newStudentDateOfBirth));
+            const newCellWithGender = newRow.insertCell(-1);
+            newCellWithGender.appendChild(document.createTextNode(newStudentGender));
+            const newCellWithAge = newRow.insertCell(-1);
+            newCellWithAge.appendChild(document.createTextNode(newStudentAge.toString()));
+        }
+        function calculateAverageAge() {
+            const studentTab = document.getElementById("studentTab");
+
+            let sum = 0;
+            let count = 0;
+            let tBodyRows = studentTab.tBodies[0].rows;
+
+            for (let i = 0; i < tBodyRows.length; i++) {
+                let cells = tBodyRows[i].cells;
+                for (let j = 3; j < cells.length; j++) {
+                    let cellValue = cells[j].innerHTML;
+                    sum += parseInt(cellValue);
+                    count++;
+                }
+            }
+            const averageAge = sum / count;
+            const lastRow = studentTab.rows[studentTab.rows.length-1];
+            const lastCell = lastRow.cells[lastRow.cells.length-1];
+            lastCell.innerHTML = "<td>" + Math.round(averageAge) + "</td>";
+        }
+    </script>
+
+    <style>
+        .container {
+            width: 900px;
+            border: solid 3px steelblue;
+            margin-bottom: 30px;
+            padding: 12px 12px 12px;
+        }
+        .labels {
+            height: 30px;
+            width: 300px;
+            padding: 12px;
+            font-size: 20px;
+        }
+        input, select {
+            height: 30px;
+            width: 500px;
+            border: solid 1px steelblue;
+            font-size: 20px;
+        }
+        p {
+            display: inline-block;
+        }
+        button {
+            border: solid 1px;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            font-size: 20px;
+        }
+        table {
+            width: 100%;
+            font-size: 20px;
+            border-color: steelblue;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Форма добавления информации о студенте</h1>
+<div class = "container">
+    <div class = "row">
+        <p class = "labels">
+            <label for = "studentFio">ФИО студента:</label>
+        </p>
+        <p>
+            <input name = "fio" type="text" id = "studentFio">
+        </p>
+    </div>
+
+    <div class = "row">
+        <p class = "labels">
+            <label for = "dateOfBirth">Дата рождения:</label>
+        </p>
+        <p>
+            <input id = "dateOfBirth" name = "dateOfBirth" type="date">
+        </p>
+    </div>
+
+    <div class = "row">
+        <p class = "labels">
+            <label for = "gender">Пол:</label>
+        </p>
+        <p>
+            <select id = "gender">
+                <option value = "Мужчина">Мужчина</option>
+                <option value = "Женщина">Женщина</option>
+            </select>
+        </p>
+    </div>
+
+    <button onclick = "addStudent(), calculateAverageAge()">Добавить</button>
+</div>
+
+<h1>Таблица студентов</h1>
+
+<table cellpadding="10" border = 1 id = "studentTab">
+    <thead>
+        <tr>
+            <td>ФИО студента</td>
+            <td>Дата рождения</td>
+            <td>Пол</td>
+            <td>Возраст</td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+        <tr class = "emptyRow">
+            <td colspan = "4">&nbsp</td>
+        </tr>
+        <tr>
+            <td colspan = "3">Средний возраст студентов</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+</body>
+</html>
