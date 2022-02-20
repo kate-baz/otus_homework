@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Какая-то страничка</title>
+    <script>
+        function getMessage() {
+            // Строка заключенная в апострофы позволяет 
+            // вставлять в нее значения переменных, через плейсхолждеры ${}
+            return `А я тебя люблю :)`
+        }
+        
+        
+        function greet() {
+            const message = getMessage()
+            alert(message)
+        }
+     </script>
+</head>
+
+<body>
+    <button onclick = 'greet()'>Нажми на эту кнопку</button>
+
+</body>
+</html>
