@@ -36,10 +36,9 @@ public class PriceSpelledOutApp {
             {"миллиардов ", "миллионов ","тысяч ",""},
             {"миллиарда ", "миллиона ","тысячи ",""}};
 
-    public static long getNumberFromUser(IOService ioService) {
-        String buffer = ioService.inputString();
+    public static long getNumberFromUser(String command) {
         try {
-            numberFromUser = Long.parseLong(buffer);
+            numberFromUser = Long.parseLong(command);
         } catch (Throwable e) {
             throw new NumberFormatException("Введенный текст не является числом");
         }
@@ -99,13 +98,22 @@ public class PriceSpelledOutApp {
     }
 
     public static void main(String[] args) {
-        IOService ioService = new IOStreamsService(System.out, System.in);
+        try (IOService ioService = new IOStreamsService(System.out, System.in)) {
+            while (true) {
+                String command = "";
 
-        ioService.outputString("Введите число от 0 до 999 999 999 999");
-        numberFromUser = getNumberFromUser(ioService);
-        getNumberBlocks(numberFromUser);
+                ioService.outputString("Введите число от 0 до 999 999 999 999 или \"exit\", если хотите завершить программу.");
+                command = ioService.inputString();
 
-        String numberToText = numberToText(billions, millions, thousands, toThousand);
-        System.out.println(numberToText);
+                if (command.equals("exit")) {
+                    break;
+                }
+                numberFromUser = getNumberFromUser(command);
+                getNumberBlocks(numberFromUser);
+
+                String numberToText = numberToText(billions, millions, thousands, toThousand);
+                System.out.println(numberToText);
+            }
+        }
     }
 }

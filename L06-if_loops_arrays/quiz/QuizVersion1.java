@@ -39,8 +39,6 @@ public class QuizVersion1 {
                 }
                 responses[i] = currentAnswer;
             }
-
-
         }
         System.out.println("Вы ответили правильно на " + countOfCorrectAnswers + " вопросов из 3-х");
 

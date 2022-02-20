@@ -1,0 +1,127 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Классная работа</title>
+    <style>
+        h1, h2, h3 {
+            color: steelblue;
+        }
+        
+        .content-block {
+            width: 800px;
+            margin-left: 20px;
+        }
+     
+        .input-form > input{
+            width: 300px;
+        }
+        
+        pre {
+            border: 1px solid steelblue;
+            width: 300px;
+            min-height: 50px;
+        }
+    </style>
+    
+    <!--Сюда вствляем скрипт для второго упражнения-->
+    <script>
+        function moveText() {
+            const situation = document.getElementById("situation");
+            const finalData = document.getElementById("finalData");
+
+            let newParagraph = document.getElementById("newParagraph");
+            if (!newParagraph) {
+                newParagraph = document.createElement("p");
+                newParagraph.id = "newParagraph";
+                situation.appendChild(newParagraph);
+            }
+            newParagraph.innerHTML = "<b>" + finalData.value + "</b>";
+
+        }
+    </script>
+</head>
+
+<body>
+
+<h2>
+Classwork
+</h2>
+
+
+<h3>
+    Situation:
+</h3>
+
+<div class = "content-block" id = "situation">
+    <p>
+        Zakinul starik nevod v more...
+    </p>
+</div>
+
+<h3>
+    Form for input:
+</h3>
+
+<div class = "input-form" >
+    <input type = "text" value = "I teper sidit starik bez nevoda!" id = "finalData">
+</div>
+
+<button onclick = 'moveText()'>Move text</button>
+<!--Сюда вствляем скрипт для первого упражнения-->
+
+
+<br/><br/><br/>
+<hr/>
+
+<h3>
+    Animal:
+</h3>
+
+<pre id = "animalContainer"></pre>
+
+<h3>
+    Kitty:
+</h3>
+
+<pre id = "kittyContainer"></pre>
+
+
+
+<!--Тут выполняем для третье упражнение-->
+<script>
+    const animal = {size: "small", isPredator: true}
+
+    const kitty = {
+        ...animal,
+        name: "Vasily",
+        birthDay: new Date()-365
+    }
+
+    const animalContainer = document.getElementById("animalContainer")
+    const kittyContainer = document.getElementById("kittyContainer")
+
+    animalContainer.innerText = JSON.stringify2animal, null, 4)
+    kittyContainer.innerText = JSON.stringify(kitty, null, 4)
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
